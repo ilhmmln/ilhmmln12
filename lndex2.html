@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eFootball Style Portfolio</title>
+  <style>
+    /* RESET & CORE STYLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial Black', sans-serif;
+    }
+
+    body {
+      background: #020b18;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* BACKGROUND GRADIENT ANIMATION (EFOOTBALL BLUE & MAGENTA GLOW) */
+    .bg-glow {
+      position: fixed;
+      top: -10%;
+      left: -10%;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle at 20% 30%, rgba(0, 114, 255, 0.25), transparent 40%),
+                  radial-gradient(circle at 80% 70%, rgba(230, 0, 126, 0.2), transparent 40%),
+                  linear-gradient(135deg, #010814 0%, #051833 100%);
+      z-index: -1;
+      animation: pulseBg 10s infinite alternate ease-in-out;
+    }
+
+    @keyframes pulseBg {
+      0% { filter: hue-rotate(0deg) scale(1); }
+      100% { filter: hue-rotate(30deg) scale(1.03); }
+    }
+
+    /* NAVBAR / MENU BAR */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: rgba(1, 10, 26, 0.85);
+      border-bottom: 3px solid #ffee00;
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #fff;
+      font-style: italic;
+    }
+
+    .brand span {
+      color: #ffee00;
+      text-shadow: 0 0 10px rgba(255, 238, 0, 0.6);
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: 2px solid rgba(255, 238, 0, 0.3);
+      padding: 10px 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background: #ffee00;
+      color: #000;
+      border-color: #ffee00;
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 0 20px rgba(255, 238, 0, 0.6);
+    }
+
+    /* MAIN CONTAINER & SECTIONS */
+    main {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* TITLE STYLES */
+    h1 {
+      font-size: 42px;
+      text-transform: uppercase;
+      font-style: italic;
+      color: #fff;
+      margin-bottom: 10px;
+      text-shadow: 0 0 15px rgba(0, 114, 255, 0.8);
+    }
+
+    h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+      font-style: italic;
+      color: #ffee00;
+      margin-bottom: 15px;
+    }
+
+    p {
+      line-height: 1.6;
+      color: #d1d5db;
+      font-family: sans-serif;
+    }
+
+    /* GRID & eFOOTBALL CARDS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .efootball-card {
+      background: linear-gradient(135deg, rgba(0, 114, 255, 0.15), rgba(230, 0, 126, 0.15));
+      border: 2px solid rgba(255, 238, 0, 0.4);
+      border-radius: 12px;
+      padding: 25px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+    }
+
+    .efootball-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: 0.6s;
+    }
+
+    .efootball-card:hover::after {
+      left: 100%;
+    }
+
+    .efootball-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      border-color: #ffee00;
+      box-shadow: 0 10px 30px rgba(0, 114, 255, 0.4), 0 0 15px rgba(255, 238, 0, 0.5);
+    }
+
+    /* RATING BADGE (SPECIAL CARD EFFECT) */
+    .overall-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffee00, #ffaa00);
+      color: #000;
+      font-size: 32px;
+      font-weight: 900;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(255, 238, 0, 0.8);
+      margin-bottom: 15px;
+    }
+
+    /* FORM STYLING FOR KONTAK */
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 238, 0, 0.3);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      font-family: sans-serif;
+      transition: 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #ffee00;
+      box-shadow: 0 0 12px rgba(255, 238, 0, 0.4);
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #ffee00, #ffaa00);
+      color: #000;
+      border: none;
+      width: 100%;
+      padding: 15px;
+      font-weight: 900;
+      font-size: 18px;
+      text-transform: uppercase;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(255, 238, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-glow"></div>
+
+  <!-- HEADER / NAVIGATION -->
+  <header>
+    <div class="brand">eFOOTBALL <span>PORTFOLIO</span></div>
+    <nav>
+      <button class="nav-btn active" onclick="switchTab('profil', this)">PROFIL</button>
+      <button class="nav-btn" onclick="switchTab('riwayat', this)">RIWAYAT</button>
+      <button class="nav-btn" onclick="switchTab('kontak', this)">KONTAK</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- TAB PROFIL -->
+    <section id="profil" class="section active">
+      <div class="overall-badge">100</div>
+      <h1>ILHAM MAULANA</h1>
+      <p style="font-size: 20px; color: #ffee00; margin-bottom: 25px;">WEB DEVELOPER / CREATIVE DESIGNER</p>
+
+      <div class="grid">
+        <div class="efootball-card">
+          <h2>TENTANG SAYA</h2>
+          <p>Pengembang web dengan fokus pada tampilan interaktif, animasi responsif, dan pengalaman pengguna bertema modern.</p>
+        </div>
+        <div class="efootball-card">
+          <h2>STATS ATTRIBUTES</h2>
+          <p><strong>HTML & CSS:</strong> 98</p>
+          <p><strong>JavaScript:</strong> 94</p>
+          <p><strong>UI/UX Design:</strong> 92</p>
+          <p><strong>Problem Solving:</strong> 95</p>
+        </div>
+        <div class="efootball-card">
+          <h2>PLAYING STYLE</h2>
+          <p>Pendekatan terstruktur, optimasi performa cepat, dan tampilan visual yang mencolok di setiap perangkat.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB RIWAYAT -->
+    <section id="riwayat" class="section">
+      <h1>MATCH HISTORY & CAREER</h1>
+      <p style="margin-bottom: 25px;">Rekam jejak pengalaman dan pencapaian profesional.</p>
+
+      <div class="grid">
+        <div class="efootball-card">
+          <div class="overall-badge" style="width: 50px; height: 50px; font-size: 16px;">2024</div>
+          <h2>Senior Developer</h2>
+          <p>Memimpin pengembangan aplikasi web interaktif dengan sistem animasi performa tinggi.</p>
+        </div>
+        <div class="efootball-card">
+          <div class="overall-badge" style="width: 50px; height: 50px; font-size: 16px;">2022</div>
+          <h2>Frontend Specialist</h2>
+          <p>Merancang antarmuka berbasis komponen dan mengintegrasikan API secara dinamis.</p>
+        </div>
+        <div class="efootball-card">
+          <div class="overall-badge" style="width: 50px; height: 50px; font-size: 16px;">2020</div>
+          <h2>UI/UX Designer</h2>
+          <p>Membuat desain prototipe visual dan skema antarmuka interaktif untuk produk digital.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB KONTAK -->
+    <section id="kontak" class="section">
+      <h1 style="text-align: center;">SEND MATCH REQUEST</h1>
+      <p style="text-align: center; margin-bottom: 30px;">Hubungi saya untuk memulai kerja sama proyek baru.</p>
+
+      <div class="efootball-card form-container">
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <input type="text" placeholder="NAMA LENGKAP" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="ALAMAT EMAIL" required>
+          </div>
+          <div class="form-group">
+            <textarea rows="5" placeholder="PESAN ANDA" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">KIRIM PESAN</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // FUNGSI PERPINDAHAN TAB
+    function switchTab(tabId, element) {
+      document.querySelectorAll('.section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      document.getElementById(tabId).classList.add('active');
+      element.classList.add('active');
+    }
+
+    // HANDLER FORM KONTAK
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert("Pesan Anda berhasil terkirim!");
+    }
+  </script>
+</body>
+</html>
